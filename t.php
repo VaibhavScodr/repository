@@ -70,8 +70,8 @@
    }
      */
    // 4. now insert the records in the same table in the formate
-   
-   $insert="INSERT INTO record(name,emp_id,salary) VALUES(name,emp_id,salary)";
+   /* all records were inserted
+   $insert="INSERT INTO record(name,emp_id,salary) VALUES('sanskar',123,1000)";
    $exe_ins=mysqli_query($conn,$insert);
 
    if($exe_ins){
@@ -80,7 +80,58 @@
      else{
           echo "sorry! there was error";
      }
-     
+     */
+    // print or display that data colleceted by the queries
+    /*
+    $s="SELECT * FROM record";
+    $a=mysqli_query($conn,$s);
+    
+    $result=mysqli_num_rows($a);
+    if($result>0){
+        $i=0;
+        
+        while($i<$result){
+          $row=mysqli_fetch_assoc($a);
+          echo var_dump($row);
+          $i++;
+        }
+         
+    }
+        */
+   /// where clause use in this
+   /*
+    $nq="SELECT * FROM record WHERE salary < 4000";
+    $execute=mysqli_query($conn,$nq);
+    echo mysqli_num_rows($execute);
+    $i=0;
+    while($i!=mysqli_num_rows($execute)) {
+        $rows=mysqli_fetch_assoc($execute);
+        echo var_dump($rows);
+        $i++;
+    }
+        */  
+    // update queries
+    /*
+    $update_query="UPDATE record SET name='vaibhav' WHERE name='vaibhavsingh'";
+    $updation=mysqli_query($conn,$update_query);
+     if($updation) {
+      echo "we have updated the record";
+     }
+     else{
+       echo "not ";
+     }
+   */
+  // delete queries
+  $delete="DELETE FROM record WHERE emp_id=1";
+  $delete_query=mysqli_query($conn,$delete);
+  $nums=mysqli_affected_rows($conn);
+  echo $nums;
+  if($delete_query){
+    echo "deleted records";
+  }
+  else{
+    echo "not deleted records";
+  }
 
      echo $twig->render(
           'form.html.twig', ['title'=>'BCRL'],
